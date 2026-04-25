@@ -1,0 +1,25 @@
+  <div class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-800 w-[400px] rounded-2xl shadow-2xl border border-slate-700 relative p-8">
+      <%# Back to Root %>
+      <a href="/" data-turbo="false" class="absolute top-4 right-4 text-slate-400 hover:text-white no-underline">
+        X
+      </a>
+      
+      <%# Form to Create List %>
+      <h3 class="text-white font-[1000] text-xl mb-6 text-center">New Task</h3>
+        <%= form_with url: "/newlist", method: :post, scope: :list, data: {turbo: false} , html: {target: "_top"} , class: "flex flex-col gap-5" do |f| %>
+        <%= f.text_field :title, 
+        required: true, 
+        placeholder: "ใส่หัวข้อ", 
+        class: "w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-sky-500 outline-none" %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :desc, "Description", class: "text-slate-400 text-sm ml-1" %>
+          <%= f.text_area :desc, rows: 3, class: "w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-sky-500 outline-none" %>
+        </div>
+        <div class="flex gap-3 mt-4">
+          <%= f.submit "Save Task", class: "w-full py-3 rounded-xl bg-emerald-500 text-white font-[1000] cursor-pointer hover:bg-emerald-600 transition-colors" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="flex flex-col items-center justify-center">
+  <%# Profile %>
+  <h2 class="mb-[50px] font-[1000]">ToDo_Lists</h2>
+  <%= link_to "/profile" ,
+  class: "flex items-center justify-center p-[10px] rounded-[16px] bg-sky-500 text-olive-50 font-[1000] cursor-pointer transition-all duration-200 ease-in-out hover-bt mt-[-20px] mb-[20px]" do %>
+  Profile
+  <%end%>
+  
+  <div class="mt-[20px] flex items-center justify-center max-w-[500px] max-h-[20px]">
+    <%# Call view partials search-box %>
+    <%= render "/shared/search_action" %>
+    
+    <%# Create List %>
+    <%= link_to "/newlist", 
+      class: "px-[30px] text-olive-50 font-[1000] ml-[10px] w-[50px] h-[44px] flex items-center justify-center bg-sky-500 rounded-[16px] hover-bt no-underline" do %>
+      Create
+    <% end %>
+  </div>
+
+  <%# Card Lists %>
+  <div class="flex flex-wrap justify-center gap-6 p-4 mt-[20px]">
+    <%= turbo_frame_tag "todo_list_results" do %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-fit transition-all duration-300">
+      <% @todo_list.each do |list| %>
+      <div class="w-[240px] h-[400px]">
+        <%= render "shared/list_card", todo_list: list %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  
+</div>
+
+
+<%# Lock Body %>
+<script>
+  document.addEventListener("turbo:before-stream-render", (event) => {
+    const scrollPos = window.scrollY;
+    document.body.style.top = `-${scrollPos}px`;
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    const originalRender = event.detail.render;
+    event.detail.render = (streamElement) => {
+      originalRender(streamElement);
+      setTimeout(() => {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollPos);
+      }, 0);
+    };
+  });
+</script>

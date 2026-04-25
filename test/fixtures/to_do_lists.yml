@@ -1,0 +1,22 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: to_do_lists
+#
+#  id         :bigint           not null, primary key
+#  desc       :text
+#  iscomplete :boolean
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+one:
+  title: MyString
+  desc: MyText
+  iscomplete: false
+
+two:
+  title: MyString
+  desc: MyText
+  iscomplete: false

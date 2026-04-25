@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+    --color-olive-50: #f7f8f2;
+}
+
+
+@utility bt-1 {
+    width: 80px;
+    height: 32px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+@utility bt-2 {
+    width: 40px;
+    height: 28px;
+    border-radius: 16px;
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.2s ease-in-out;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f87171;
+    border: 2px solid #ef4444;
+
+    &::after {
+        content: '✕';
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        position: absolute;
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:checked {
+        background-color: #65fe08;
+        border-color: #65fe08;
+
+        &::after {
+            content: '✓';
+            font-size: 18px;
+            color: #fff;
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover {
+        filter: brightness(1.05);
+    }
+}
+
+@utility bg-body {
+    background-color: #1A1A1A;
+    color: var(--color-olive-50);
+}
+
+@utility hover-bt {
+
+
+    &:hover {
+        background-color: var(--color-sky-700);
+        color: var(--color-olive-50);
+    }
+}

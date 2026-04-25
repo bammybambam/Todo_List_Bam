@@ -1,0 +1,67 @@
+    <div id="<%= dom_id(todo_list) %>" data-controller="informationcard editcard" class="relative flex flex-col items-center justify-center w-[240px] h-[400px] rounded-2xl
+            <%= todo_list.iscomplete ? 'bg-rose-100/75' : 'bg-emerald-100/75' %>">
+    
+    <div class="flex items-center w-[90%] h-full flex-col relative mx-[8px]">
+      <p class="text-teal-900 text-center w-full h-auto font-[700] mt-[12px] break-words px-2 line-clamp-[3]
+                <%= 'line-through opacity-50' if todo_list.iscomplete %>">
+        <%= todo_list.title %>
+      </p>
+      <%# Back Card %>
+      <% if !todo_list.iscomplete %>
+        <div class="text-left w-full h-auto px-2 font-[300] break-words mt-[10px] line-clamp-[7] rounded-[16px] bg-white text-teal-900">
+          <%= todo_list.desc %>
+        </div>
+      <% else %>
+        <div class="absolute top-35 flex items-center justify-center flex-col w-[50%] h-auto ">
+          <div class="flex items-center justify-center w-[62px] h-[62px] rounded-[50%] bg-lime-400">
+            <p class="font-[1000] text-[32px]">✓</p>
+          </div>
+          <p class="text-teal-900">Complete !</p>
+        </div>
+      <% end %>
+      <%# Open %>
+      <button data-action="click->informationcard#open" 
+        class="absolute bottom-13 w-full h-auto py-[4px] bg-emerald-500 text-white rounded-[16px] font-[700] hover:bg-emerald-800 cursor-pointer transition-all">
+        Open
+      </button>
+      <%# Call view partials _information_card.html.erb %>
+      <%= render "shared/information_card", todo: todo_list %>
+      
+      <%# Checkbox %>
+      <div class="absolute bottom-0 flex items-center justify-between w-full mb-[10px]">
+        <%= form_with url: "/checklist/#{todo_list.id}", method: :patch, scope: :list do |f| %>
+          <%= f.check_box :iscomplete, 
+              { 
+                class: "bt-2 flex items-center justify-center", 
+                onchange: "this.form.requestSubmit();",
+                checked: todo_list.iscomplete?
+              }, "true", "false" %>
+        <% end %>
+
+        <%# if iscomplete = false have edit & remove button %>
+        <%if !todo_list.iscomplete %>
+        <div class="flex gap-1">
+            <button data-action="click->editcard#open" 
+              class="bt-1 bg-sky-300 hover:bg-sky-700 text-white">
+            Edit
+            </button>
+        <%# Call view partials _form_edit.html.erb %>
+            <%= render "shared/form_edit", todo: todo_list %>
+          
+          
+        <%# Remove button call API delete method /list/:id to function destroy %>
+          <%= button_to "/list/#{todo_list.id}",
+              method: :delete,
+              class: "bt-1 bg-red-600 text-white hover:bg-red-800",
+              data: { 
+                controller: "confirm", 
+                confirm_message_value: "Do you really want to delete this list?",
+                action: "confirm#show" 
+              } do %>
+            Remove
+          <% end %>
+        </div>
+        <%end%>
+      </div>
+    </div>
+  </div>

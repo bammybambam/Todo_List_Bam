@@ -1,0 +1,14 @@
+<%= form_with url: root_path, method: :get, 
+              class: "flex items-center w-full",
+              data: { 
+                turbo_frame: "todo_list_results", 
+                controller: "search",            
+                action: "input->search#submit"   
+              } do |f| %>
+    <%= f.text_field :query, 
+      placeholder: "Search...", 
+      value: params[:query],
+      class: "p-[20px] rounded-[16px] w-[500px] h-[44px] box-border outline-none border border-gray-300 focus:border-sky-500 transition-colors duration-200",
+      autocomplete: "off" %>
+  
+<% end %>
