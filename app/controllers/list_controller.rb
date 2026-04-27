@@ -36,7 +36,6 @@ def update
 end
 
 def checklist
-  @todo_list_select = ToDoList.find(params[:id])
   if @todo_list_select.update(select_params)
     respond_to do |format|
       format.turbo_stream do
