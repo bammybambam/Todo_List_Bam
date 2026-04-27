@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center" data-controller="scroll-lock">
   <%# Profile %>
   <h2 class="mb-[50px] font-[1000]">ToDo_Lists</h2>
   <%= link_to "/profile" ,
@@ -31,24 +31,3 @@
   </div>
   
 </div>
-
-
-<%# Lock Body %>
-<script>
-  document.addEventListener("turbo:before-stream-render", (event) => {
-    const scrollPos = window.scrollY;
-    document.body.style.top = `-${scrollPos}px`;
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    const originalRender = event.detail.render;
-    event.detail.render = (streamElement) => {
-      originalRender(streamElement);
-      setTimeout(() => {
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, scrollPos);
-      }, 0);
-    };
-  });
-</script>
