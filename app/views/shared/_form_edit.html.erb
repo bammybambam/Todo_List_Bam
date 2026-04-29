@@ -10,16 +10,21 @@
       <button data-action="click->editcard#close" class="text-gray-400 hover:text-gray-600 text-3xl leading-none">&times;</button>
     </div>
 
-    <%= form_with model: todo, url: "/list/#{todo.id}", scope: :list , method: :patch do |f| %>
+    <%= form_with model: todo, url: list_path(todo), scope: :list , method: :patch  , data: {action: "turbo:submit-end->editcard#close"} do |f| %>
       <div class="p-8 space-y-4">
         <div>
           <%= f.label :title, "Title", class: "block font-bold mb-1 text-teal-900" %>
-          <%= f.text_field :title, class: "w-full rounded-xl border-gray-500 text-zinc-500 focus:border-sky-500 focus:ring-sky-500" %>
+          <%= f.text_field :title, class: "w-full border rounded-xl border-gray-200 text-zinc-500 focus:border-sky-500 focus:ring-sky-500" %>
         </div>
 
         <div>
           <%= f.label :desc, "Description", class: "block font-bold mb-1 text-teal-900" %>
-          <%= f.text_area :desc, rows: 4, class: "w-full rounded-xl border-gray-200 text-zinc-500 focus:border-sky-500 focus:ring-sky-500" %>
+          <%= f.text_area :desc, rows: 4, class: "w-full border rounded-xl border-gray-200 text-zinc-500 focus:border-sky-500 focus:ring-sky-500" %>
+        </div>
+
+        <div>
+          <%= f.label :due_date, "Due Date", class: "block font-bold mb-1 text-teal-900" %>
+          <%= f.date_field :due_date, class: "w-full border rounded-xl border-gray-200 text-zinc-500 focus:border-sky-500 focus:ring-sky-500" %>
         </div>
       </div>
 

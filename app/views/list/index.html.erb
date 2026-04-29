@@ -1,20 +1,22 @@
 <div class="flex flex-col items-center justify-center" data-controller="scroll-lock">
   <%# Profile %>
   <h2 class="mb-[50px] font-[1000]">ToDo_Lists</h2>
-  <%= link_to "/profile" ,
-  class: "flex items-center justify-center p-[10px] rounded-[16px] bg-sky-500 text-olive-50 font-[1000] cursor-pointer transition-all duration-200 ease-in-out hover-bt mt-[-20px] mb-[20px]" do %>
-  Profile
+  <div class="flex flex-row items-center justify-center gap-[12px]">
+    <%= link_to profile_list_index_path ,
+    class: "flex items-center justify-center p-[10px] rounded-[16px] bg-sky-500 text-olive-50 font-[1000] cursor-pointer transition-all duration-200 ease-in-out hover-bt mt-[-20px] mb-[20px]" do %>
+    Profile
   <%end%>
+  <%= link_to new_list_path, 
+    class: "flex items-center justify-center p-[10px] rounded-[16px] bg-sky-500 text-olive-50 font-[1000] cursor-pointer transition-all duration-200 ease-in-out hover-bt mt-[-20px] mb-[20px]" do %>
+    Create
+  <% end %>
+  </div>
   
   <div class="mt-[20px] flex items-center justify-center max-w-[500px] max-h-[20px]">
     <%# Call view partials search-box %>
     <%= render "/shared/search_action" %>
     
     <%# Create List %>
-    <%= link_to "/newlist", 
-      class: "px-[30px] text-olive-50 font-[1000] ml-[10px] w-[50px] h-[44px] flex items-center justify-center bg-sky-500 rounded-[16px] hover-bt no-underline" do %>
-      Create
-    <% end %>
   </div>
 
   <%# Card Lists %>

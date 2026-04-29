@@ -29,7 +29,7 @@
       
       <%# Checkbox %>
       <div class="absolute bottom-0 flex items-center justify-between w-full mb-[10px]">
-        <%= form_with url: "/checklist/#{todo_list.id}", method: :patch, scope: :list do |f| %>
+        <%= form_with url: checklist_list_path(todo_list), method: :patch, scope: :list do |f| %>
           <%= f.check_box :iscomplete, 
               { 
                 class: "bt-2 flex items-center justify-center", 

@@ -20,6 +20,13 @@ gem "jbuilder"
 gem "dotenv", groups: [ :development, :test ]
 
 gem "htmlbeautifier"
+gem "omniauth-keycloak"
+gem "omniauth-rails_csrf_protection"
+gem "json-jwt", "~> 1.16"
+gem "activerecord-session_store"
+gem "whenever", require: false
+gem "letter_opener", group: :development
+gem "icalendar"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -71,3 +78,5 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 4.4"
+
+gem "httparty", "~> 0.24.2"
