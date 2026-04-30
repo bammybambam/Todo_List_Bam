@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
   match "/newlist", to: "list#create", as: :new_list, via: [ :get, :post ]
+  get "showcalendar", to: "list#show_calendar"
   get "calendar", to: "list#calendar", as: :calendar_feed
   get "/auth/:provider/callback", to: "sessions#create"
   post "/auth/:provider/callback", to: "sessions#create"

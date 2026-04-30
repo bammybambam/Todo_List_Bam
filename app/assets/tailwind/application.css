@@ -1,5 +1,105 @@
 @import "tailwindcss";
 
+.date-number {
+    padding: 0 8px;
+  }
+
+.group\/item {
+  @apply relative mb-1;
+}
+
+.span-task {
+  @apply w-full block;
+  margin-left: -0.5rem; 
+  margin-right: -0.5rem;
+  width: calc(100% + 1rem);
+  position: relative;
+  z-index: 10;
+}
+
+.simple-calendar thead th {
+  @apply text-slate-700 font-bold uppercase tracking-widest;
+  color: #94a3b8; 
+}
+
+.simple-calendar td {
+  border: 1px solid #334155;
+
+  @apply border-slate-700; 
+}
+
+.simple-calendar .today {
+    @apply bg-rose-300/20
+}
+
+.simple-calendar .prev-month,
+.simple-calendar .next-month {
+  border: 1px solid #977d7d
+}
+
+.simple-calendar .prev-month,
+.simple-calendar .next-month {
+  @apply bg-slate-700 text-olive-50; 
+}
+
+.simple-calendar .prev-month span,
+.simple-calendar .next-month span {
+  @apply opacity-30 grayscale text-olive-50 ;
+}
+
+.calendar-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px; 
+  margin-bottom: 1rem;
+}
+
+.calendar-heading a {
+  @apply px-4 py-2 bg-slate-700 hover:bg-sky-600 rounded-lg text-sm font-medium transition-all text-white no-underline shadow-md;
+  min-width: 80px;
+  text-align: center;
+}
+
+.calendar-title {
+  @apply text-xl font-bold text-slate-700;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); 
+}
+
+.simple-calendar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .simple-calendar table {
+    flex: 1;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  
+
+  .simple-calendar tbody {
+    height: 100%;
+  }
+
+  .simple-calendar tr {
+    height: 16.66%;
+  }
+
+  .simple-calendar td {
+    padding: 4px 0 !important;
+    height: 1px;
+    vertical-align: top;
+    border: 1px solid rgb(51 65 85);
+  }
+
 @theme {
     --color-olive-50: #f7f8f2;
 }

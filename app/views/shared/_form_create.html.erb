@@ -8,6 +8,7 @@
       <%# Form to Create List %>
       <h3 class="text-white font-[1000] text-xl mb-6 text-center">New Task</h3>
         <%= form_with url: new_list_path, method: :post, scope: :list, data: {turbo: false} , html: {target: "_top"} , class: "flex flex-col gap-5" do |f| %>
+        <%= f.label :title, "Title *" , class: "text-slate-400"%>
         <%= f.text_field :title, 
         required: true, 
         placeholder: "ใส่หัวข้อ", 
@@ -17,8 +18,13 @@
           <%= f.text_area :desc, rows: 3, class: "w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-sky-500 outline-none" %>
         </div>
         <div class="flex flex-col gap-2">
-          <%= f.label :due_date, "Due Date", class: "text-slate-400 text-sm ml-1" %>
+          <%= f.label :due_date, "Due Date *", class: "text-slate-400 text-sm ml-1" %>
           <%= f.date_field :due_date, required: true, 
+              class: "w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-sky-500 outline-none [color-scheme:dark]" %>
+        </div>
+        <div class="flex flex-col gap-2">
+          <%= f.label :end_date, "End Date", class: "text-slate-400 text-sm ml-1" %>
+          <%= f.date_field :end_date,
               class: "w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-sky-500 outline-none [color-scheme:dark]" %>
         </div>
         <div class="flex gap-3 mt-4">

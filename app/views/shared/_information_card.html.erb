@@ -20,13 +20,9 @@
        <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2">
           <label class="font-semibold">Due Date : </label>
           <p><%= todo.due_date&.strftime("%d-%m-%Y") %></p>
-          <label class="font-semibold">Started Date :</label>
-          <p><%= todo.created_at.strftime("%d-%m-%Y") %></p>
+          <label class="font-semibold">End Date :</label>
+          <p><%= todo.end_date&.strftime("%d-%m-%Y") %></p>
           
-          <label class="font-semibold">Finished Date :</label>
-          <%if todo.iscomplete %><p><%= todo.updated_at.strftime("%d-%m-%Y") %></p>
-          <%else %><p>None</p>
-          <%end%>
         </div>
 
       </div>

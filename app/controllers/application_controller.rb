@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(uid: session[:uid]) if session[:uid]
   end
 
   def user_signed_in?

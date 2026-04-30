@@ -15,3 +15,39 @@
   transition: all 0.3s ease-out;
   pointer-events: none;
 }
+
+.simple-calendar {
+  @apply w-full h-full border-separate border-spacing-0;
+}
+
+.simple-calendar thead th {
+  @apply p-2 text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-wider border-b border-slate-700;
+}
+
+.simple-calendar td {
+  @apply border-b border-r border-slate-700/50 p-1 md:p-2 align-top w-[14.28%] transition-colors hover:bg-slate-700/30;
+}
+
+.simple-calendar td:last-child, .simple-calendar th:last-child {
+  @apply border-r-0;
+}
+
+.simple-calendar tr:last-child td {
+  @apply border-b-0;
+}
+
+.simple-calendar .today {
+  @apply bg-sky-500/5 ring-1 ring-inset ring-sky-500/30;
+}
+
+.calendar-heading {
+  @apply flex items-center justify-between mb-4 px-2;
+}
+
+.calendar-heading a {
+  @apply px-3 py-1.5 md:px-4 md:py-2 bg-slate-700 hover:bg-sky-600 rounded-lg text-xs md:text-sm font-medium transition-all text-white no-underline;
+}
+
+.calendar-title {
+  @apply text-lg md:text-xl font-bold text-white;
+}

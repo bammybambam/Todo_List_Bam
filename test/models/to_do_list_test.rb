@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  desc       :text
 #  due_date   :datetime
+#  end_date   :datetime
 #  iscomplete :boolean
 #  title      :string
 #  created_at :datetime         not null

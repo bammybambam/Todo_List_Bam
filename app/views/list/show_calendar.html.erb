@@ -1,0 +1,44 @@
+<div class="flex flex-col h-screen text-white overflow-hidden" data-controller="informationcard">
+  <div class="p-6 pb-2 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-sky-400">Calendar</h1>
+  </div>
+
+  <div class="flex-1 p-4 md:p-6 flex flex-col min-h-0"> 
+    <div class="flex-1 bg-olive-50 rounded-2xl shadow-2xl p-2 md:p-4 overflow-hidden">
+      <%= month_calendar(events: @todo_list, attribute: :due_date , end_attribute: :end_date) do |date, tasks| %>
+        <div class="h-full flex flex-col group <%= tasks.count >=1 ? 'cursor-pointer' : '' %>" data-controller="informationcard" data-action="click->informationcard#open">
+          <div class="date-number text-xs md:text-sm font-semibold text-slate-500 mb-1">
+          <%= date.day %>
+          </div>
+          <% if tasks.count >= 1 %>
+            <%= render "shared/popup_calendar", date: date, tasks: tasks %>
+          <% end %>
+
+          <div class="flex-1 space-y-1 overflow-y-auto scrollbar-hide">
+            <% tasks.first(3).each do |task| %>
+                <div class="group/item relative">
+                  <% 
+                    is_start = task.due_date.to_date == date
+                    is_end = (task.end_date&.to_date || task.due_date.to_date) == date
+                  %>
+                  <span class="text-[9px] md:text-[11px] px-2 py-1 text-slate-900
+                   <%= task.iscomplete ? 'bg-emerald-500/20' : 'bg-sky-500/20' %> 
+                   border-y border-sky-500/20 block truncate transition-all
+                   <% if is_start %> rounded-l-md border-l pl-2 <% end %>
+                   <% if is_end %> rounded-r-md border-r pr-2 <% end %>
+                   <%= 'mx-[-9px]' if !is_start && !is_end %> 
+                   <%= 'ml-[-9px]' if is_end && !is_start %>
+                   <%= 'mr-[-9px]' if is_start && !is_end %>">
+                <%= task.title if is_start %> &nbsp; </span>
+            
+                </div>
+            <% end %>
+          <% if tasks.count > 3 %>
+            <span class="text-[9px] md:text-[10px] text-slate-500 italic pl-2 mt-1 font-medium">+ <%= tasks.count - 3 %> more</span>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

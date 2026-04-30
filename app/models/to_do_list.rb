@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  desc       :text
 #  due_date   :datetime
+#  end_date   :datetime
 #  iscomplete :boolean
 #  title      :string
 #  created_at :datetime         not null
@@ -24,9 +25,15 @@ class ToDoList < ApplicationRecord
   validates :title, presence: true
   validates :due_date, presence: true
 
-  before_create :set_iscomple_false
+  before_create :set_iscomple_false, :set_end_date
 
   def set_iscomple_false
     self.iscomplete = false
+  end
+
+  def set_end_date
+    if self.end_date.nil?
+      self.end_date = self.due_date
+    end
   end
 end

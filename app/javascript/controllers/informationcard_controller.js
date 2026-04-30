@@ -10,7 +10,10 @@ export default class extends Controller {
   }
 
   close(e) {
-    if (e) e.preventDefault()
+    if (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    }
     this.containerTarget.classList.add("hidden")
     document.body.style.overflow = "auto"
   }

@@ -1,10 +1,11 @@
 class ListController < ApplicationController
   include ActionView::RecordIdentifier
+  include SimpleCalendar::ViewHelpers
   before_action :authenticate_user!
   before_action :select_list, only: [ :update, :destroy, :checklist ]
 
 def profile
-  @user = User.find_by(id: session[:user_id])
+  @user = User.find_by(uid: session[:uid])
 end
 
 def index
@@ -68,26 +69,40 @@ def calendar
 
   @tasks.each do |task|
     cal.event do |e|
-      e.dtstart     = Icalendar::Values::Date.new(task.due_date)
+      e.dtstart = Icalendar::Values::Date.new(task.due_date.to_date)
+
+      end_date = task.end_date || task.due_date
+      e.dtend = Icalendar::Values::Date.new(end_date.to_date + 1.day)
+
       e.summary     = task.title
       e.description = task.desc
       e.ip_class    = "PRIVATE"
+
+      e.alarm do |a|
+        a.action = "DISPLAY"
+        a.summary = "Reminder: #{task.title}"
+        a.trigger = "-P1D"
+      end
     end
   end
 
-  cal.publish
-
   respond_to do |format|
+    format.html
     format.ics { render plain: cal.to_ical }
   end
 end
 
+def show_calendar
+  @todo_list = ToDoList.where(user_id: current_user.id)
+end
+
 private
+
 def select_list
   @todo_list_select = ToDoList.find(params[:id])
 end
 
 def select_params
-  params.require(:list).permit(:title, :desc, :iscomplete, :due_date)
+  params.require(:list).permit(:title, :desc, :iscomplete, :due_date, :end_date)
 end
 end
