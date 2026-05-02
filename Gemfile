@@ -27,7 +27,7 @@ gem "activerecord-session_store"
 gem "whenever", require: false
 gem "letter_opener", group: :development
 gem "icalendar"
-gem "simple_calendar",  "~> 2.4"
+gem "simple_calendar",  "~> 3.1"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
