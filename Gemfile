@@ -22,7 +22,7 @@ gem "dotenv", groups: [ :development, :test ]
 gem "htmlbeautifier"
 gem "omniauth-keycloak"
 gem "omniauth-rails_csrf_protection"
-gem "json-jwt", "~> 1.16"
+gem "json-jwt", "~> 1.17"
 gem "activerecord-session_store"
 gem "whenever", require: false
 gem "letter_opener", group: :development
